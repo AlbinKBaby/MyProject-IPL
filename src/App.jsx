@@ -1,14 +1,24 @@
-import Footer from "./Components/Footer"
-import Header from "./Components/Header"
+import { Route, Routes } from "react-router-dom"
+import LandingPage from "./Components/LandingPage"
+import Login from "./Components/Login"
+import Register from "./Components/Register"
+
 
 
 function App() {
-  
+
 
   return (
     <>
-     <Header/>
-     <Footer/>
+     
+       
+        <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+       
+      </Routes>
+      
     </>
   )
 }
