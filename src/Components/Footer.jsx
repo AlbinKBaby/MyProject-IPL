@@ -24,8 +24,8 @@ function Footer() {
                 <div className="d-flex gap-5 mb-4 ms-3">
                     <div className="links d-flex flex-column text-center"><h4>LINKS</h4>
                         <a href="" style={{ textDecoration: 'none', color: 'white' }} >LandingPage</a>
-                        <a href="" style={{ textDecoration: 'none', color: 'white' }} >Home</a>
-                        <a href="" style={{ textDecoration: 'none', color: 'white' }} >WATCH HISTORY</a>
+                        <a href="" style={{ textDecoration: 'none', color: 'white' }} >Login</a>
+                        <a href="" style={{ textDecoration: 'none', color: 'white' }} >Gallery</a>
                     </div>
                     <div className="links d-flex flex-column text-center"><h4>GUIDES</h4>
                         <a href="#" className="text-white text-decoration-none">About Us</a>
@@ -40,7 +40,7 @@ function Footer() {
                         <input type="email" placeholder="Enter your email" className="form-control w-100 mb-2" />
                         <button className="btn btn-warning w-100">SUBSCRIBE</button>
                     </div>
-                    <div className="d-flex gap-3 justify-content-center p-4 bg-dark">
+                    <div className="d-flex gap-3 justify-content-center p-4 ">
                         <i className="fa-brands fa-instagram fa-lg" style={{ color: "#E4405F" }}></i>
                         <i className="fa-solid fa-envelope fa-lg" style={{ color: "#D44638" }}></i>
                         <i className="fa-brands fa-linkedin fa-lg" style={{ color: "#0077B5" }}></i>
