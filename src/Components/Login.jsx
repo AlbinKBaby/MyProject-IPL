@@ -28,18 +28,17 @@ function Login() {
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
                     </div >
-                        <Button variant="primary" type="button"
-                       >
+                       <div className='d-flex justify-content-between'>
+                         <Button variant="primary" type="button">
                             Login
                         </Button>
-
                         <Link to={'/admin'}>
                         <Button>Admin</Button>
                         </Link>
                         <Link to={'/user'}>
                         <Button>User</Button>
                         </Link>
-
+                       </div>
                         <p className='mt-3 text-center text-white'>Login as a Player</p>
                     </Form>
                 </div>

@@ -16,28 +16,30 @@ function SidebarTeam() {
               </Link>
             </li>
             <li className=" mb-2">
-              <Link to={'/'}>
+              <Link to={'/userplayers'}>
               <Button className='w-100'>
                 <a className=" text-white" style={{ textDecoration: "none" }} >Players</a>
               </Button>
               </Link>
             </li>
             <li className=" mb-2">
-               <Link to={'/'}>
+               <Link to={'/fund'}>
               <Button className='w-100'>
                 <a className="text-white" style={{ textDecoration: 'none' }} >Fund</a>
               </Button>
               </Link>
             </li>
             <li className=" mb-2" >
-               <Link to={'/requests'}>
+               <Link to={'/'}>
               <Button className='w-100'>
                 <a className=" text-white" style={{ textDecoration: 'none' }}>Requests</a>
               </Button>
               </Link>
+             <Link to={'/userauction'}>
               <Button className='w-100 mt-5' >
                 <a className=" text-white" style={{ textDecoration: 'none' }}>Auction</a>
               </Button>
+             </Link>
               <Link to={'/'}>
               <Button className='mt-5 w-100'>
           <a className=" text-white" style={{ textDecoration: 'none' }}>Logout</a>

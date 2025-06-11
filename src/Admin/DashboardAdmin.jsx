@@ -38,9 +38,11 @@ function DashboardAdmin() {
                 <a className=" text-white" style={{ textDecoration: 'none' }}>Requests</a>
               </Button>
               </Link>
+             <Link to={'/auctionadmin'}>
               <Button className='w-100 mt-5' >
                 <a className=" text-white" style={{ textDecoration: 'none' }}>Auction</a>
               </Button>
+             </Link>
               <Link to={'/'}>
               <Button className='mt-5 w-100'>
           <a className=" text-white" style={{ textDecoration: 'none' }}>Logout</a>

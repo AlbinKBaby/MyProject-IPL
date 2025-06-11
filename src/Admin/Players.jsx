@@ -4,12 +4,16 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DashboardAdmin from './DashboardAdmin';
+import Collapse from 'react-bootstrap/Collapse';
+
 
 function Players() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [open, setOpen] = useState(false);
+
 
     return (
         <>
@@ -90,11 +94,46 @@ function Players() {
                     <Modal.Title>MS Dhoni</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <div>
+                        <div className='d-flex justify-content-between form-control'>
+                            <h4>Captian</h4>
+                            <p>Wicketkeeper Batter</p>
+                        </div>
+                        <div className='d-flex justify-content-evenly form-control'>
+                            <span>DOB: 07 July 1981</span>
+                            <span>Matches : 276</span>
+                        </div>
+                            <div className='d-flex justify-content-center'>
+                                <img src="https://documents.iplt20.com/ipl/IPLHeadshot2025/57.png" alt=""
+                                style={{ width: '250px' }} />
+                            </div>
+                            <div>
+                                <Button
+                                onClick={() => setOpen(!open)}
+                                aria-controls="example-collapse-text"
+                                aria-expanded={open}
+                            >
+                                More
+                            </Button>
+                            <Collapse in={open}>
+                                <div id="example-collapse-text">
+                                    A living legend of the game, MS Dhoni will once again don the CSK jersey in TATA IPL 2025.
+                                    The five-time IPL-winning captain, known for his calm demeanour and astute leadership,
+                                    continues to be a pillar of strength for the franchise. Dhoni has amassed over 5000 runs 
+                                    and effected close to 200 dismissals behind the stumps. While his role as a batter has 
+                                    evolved over the years, his ability to finish games remains unmatched. Retained as an uncapped player,
+                                     the CSK talisman will be crucial both as a mentor and a player as the franchise aims for a record sixth IPL title.
+                                </div>
+                            </Collapse>
+                           
 
+
+                        </div>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Edit Player
                     </Button>
                     <Button variant="primary" onClick={handleClose}>
                         Save Changes
