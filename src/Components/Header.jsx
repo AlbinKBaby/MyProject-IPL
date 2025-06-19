@@ -33,7 +33,7 @@ function Header() {
               <li class="nav-item">
                 <a class="nav-link ms-4" href="#">Contact US</a>
               </li>
-              <li class="nav-item dropdown">
+              {/* <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle  ms-4" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">More</a>
           <div class="dropdown-menu show" data-bs-popper="static">
             <a class="dropdown-item" href="#">Players</a>
@@ -42,7 +42,7 @@ function Header() {
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Separated link</a>
           </div>
-        </li>
+        </li> */}
             </ul>
            </div>
           <div className='ms-auto'>
