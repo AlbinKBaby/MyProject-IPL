@@ -8,10 +8,10 @@ function Previous() {
     return (
         <>
             <div 
-            style={{ background: 'linear-gradient(to left,rgb(48, 25, 131),rgb(130, 158, 3))' }} >
+           style={{ background: 'rgb(61, 68, 64)', }}  >
 
                 <Container  >
-                    <Row className=''>
+                    <Row className='pb-2'>
                         <Col className='form-control me-5 p-2 mt-3 '
                             style={{
                                 borderColor:'black',

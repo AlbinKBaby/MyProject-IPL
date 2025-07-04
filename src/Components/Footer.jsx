@@ -8,9 +8,7 @@ function Footer() {
         <>
 
             <div className="d-flex justify-content-center align-items-center bg-dark text-white  p-4"
-                style={{
-                    background: 'linear-gradient(to right,rgb(130, 158, 3),rgb(48, 25, 131))'
-                }}>
+            >
                 <div className="overview  mb-4" style={{ maxWidth: "400px" }}>
                     <a href=""><img src={ball} style={{ width: "50px" }} /></a>
                     <span style={{ fontWeight: "700" }}>IPL Auction </span>
