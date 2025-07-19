@@ -1,100 +1,83 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { registerAsso } from '../Services/allApi';
-import {  useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerAsso } from '../Redux/Slice/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function AssoRegister() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { status, error } = useSelector((state) => state.user);
 
-    const navigate = useNavigate()
-    //  create a state to hold all the input values
-    const [userData, setUserData] = useState({
-        name: "",
-        state: "",
-        email: "",
-        password: "",
-        role: "association"
-    })
-    const handleRegister = async () => {
-        console.log("user entered data");
-        console.log(userData);
-        const { name, state, email, password , role} = userData;
-        if (!name || !state || !email || !password) {
-            alert("Pleasse fill the form")
-        }
-        else {
-            // call api to register User
-            const result = await registerAsso(userData)
-            if (result.status === 201) {
-                alert("asso regitered Successfully")
-                 navigate('/Login')
-            }
-            else {
-                alert("Something asso happened")
-            }
-        }
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    state: '',
+    role: 'association',
+  });
 
-
+  useEffect(() => {
+    if (status === 'succeeded') {
+      alert('Association registered');
+      navigate('/login');
     }
+  }, [status, navigate]);
 
-    return (
-        <>
-            <div className='d-flex justify-content-center align-items-center'
-                style={{ height: '100vh', background: 'rgb(61, 68, 64)' }} >
-                <div
-                    style={{
-                        backgroundColor: 'rgb(155, 144, 253)',
-                        padding: '30px',
-                        borderRadius: '10px',
-                        boxShadow: '0 0 35px rgba(0, 0, 0, 0.46)'
-                    }}>
-                    <Form >
-                        <h3 className='text-center text-'>Association Register</h3>
+  const handleSubmit = () => {
+    const { name, email, password, state } = formData;
+    if (!name || !email || !password || !state) return alert('Fill all fields');
 
-                        <Form.Group className="mb-2  " controlId="formBasicPassword">
-                            <Form.Label>Association Name</Form.Label>
-                            <Form.Control type="text" placeholder="Association   Name"
-                                onChange={(e) => setUserData({ ...userData, name: e.target.value })} />
-                        </Form.Group>
-                        <Form.Group className="" controlId="formBasicPassword">
-                            <Form.Label>State</Form.Label>
-                            <select className="form-control" name="states" id="states"
-                                value={userData.state}
-                                onChange={(e) => setUserData({ ...userData, state: e.target.value })} >
-                                <option value="">--Select State--</option>
-                                <option value="andhra-pradesh">Andhra Pradesh</option>
-                                <option value="goa">Goa</option>
-                                <option value="gujarat">Gujarat</option>
-                                <option value="karnataka">Karnataka</option>
-                                <option value="kerala">Kerala</option>
-                                <option value="manipur">Manipur</option>
-                                <option value="punjab">Punjab</option>
-                                <option value="rajasthan">Rajasthan</option>
-                                <option value="tamil-nadu">Tamil Nadu</option>
-                                <option value="west-bengal">West Bengal</option>
-                            </select>
-                        </Form.Group>
-                        <Form.Group className="" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email"
-                                onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                        </Form.Group>
-                        <Form.Group className=" mb-2" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password"
-                                onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
-                        </Form.Group>
+    dispatch(registerAsso(formData));
+  };
 
+  return (
+    <Form className='w-50 mx-auto mt-5'>
+      <h3 className='text-center'>Association Register</h3>
+      <Form.Group className='mb-3'>
+        <Form.Label>Name</Form.Label>
+        <Form.Control onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Email</Form.Label>
+        <Form.Control onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+      </Form.Group>   
+      <Form.Group className='mb-3'>
+        <Form.Label>State</Form.Label>
+        <Form.Select
+          name="state"
+          id="state"
+          value={formData.state}
+          onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+          className="form-select"
+        >
+          <option value="">-- Select State --</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Bihar">Bihar</option>
+          <option value="West Bengal">West Bengal</option>
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Odisha">Odisha</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Jharkhand">Jharkhand</option>
+          <option value="Assam">Assam</option>
+        </Form.Select>
+      </Form.Group>
 
-                        <Button variant="primary" type="button" onClick={handleRegister}>
-                            Register
-                        </Button>
-                    </Form>
-                </div>
-
-            </div>
-        </>
-    )
+      <Button onClick={handleSubmit}>Register</Button>
+      {error && <p className='text-danger'>{error}</p>}
+    </Form>
+  );
 }
 
-export default AssoRegister
+export default AssoRegister;

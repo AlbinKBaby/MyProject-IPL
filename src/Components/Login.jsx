@@ -1,67 +1,73 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../Redux/Slice/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const [userData, setUserData] = useState({
-        email: '',
-        password: ''
-    });
+  const { isLoggedIn, role, status, error } = useSelector((state) => state.user);
 
-    const handleLogin = async () => {
-        const { email, password } = userData;
-        console.log(email, password);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      if (role === 'admin') navigate('/admin');
+      else if (role === 'team') navigate('/user');
+      else if (role === 'association') navigate('/assoland');
     }
+  }, [isLoggedIn, role, navigate]);
 
-    return (
-        <>
-            <div className='d-flex justify-content-center align-items-center'
-                style={{ height: '100vh', background: 'rgb(61, 68, 64)' }} >
-                <div
-                    style={{
-                        width: '400px',
-                        backgroundColor: 'rgb(110, 99, 148)',
-                        padding: '30px',
-                        borderRadius: '10px',
-                        boxShadow: '0 0 35px rgba(0, 0, 0, 0.46)'
-                    }}>
-                    <Form >
-                        <h3 className='text-center '>Login</h3>
-                        <div className='mt-2' >
-                            <Form.Group className="w-100" controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email"
-                                    value={userData.email}
-                                    onChange={(e) =>
-                                        setUserData({ ...userData, email: e.target.value })
-                                    } />
-                            </Form.Group>
-                            <Form.Group className=" mb-2" controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password"
-                                    value={userData.password}
-                                    onChange={(e) =>
-                                        setUserData({ ...userData, password: e.target.value })
-                                    } />
-                            </Form.Group>
-                        </div >
-                        <div className='d-flex justify-content-center mt-4 '>
-                            <Button variant="primary" type="button" onClick={handleLogin}>
-                                Login
-                            </Button>
+  const handleLogin = () => {
+    if (!formData.email || !formData.password) {
+      alert("Enter both fields");
+      return;
+    }
+    dispatch(loginUser(formData));
+  };
 
-                        </div>
+  return (
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <div style={{ width: '400px', background: '#ddd', padding: 30, borderRadius: 10 }}>
+        <h3 className="text-center">Login</h3>
+        <Form>
+          <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+          </Form.Group>
 
-                    </Form>
-                </div>
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            />
+          </Form.Group>
 
-            </div>
-        </>
-    )
+          <Button
+            variant="primary"
+            type="button"
+            onClick={handleLogin}
+            disabled={status === 'loading'}
+          >
+            {status === 'loading' ? 'Logging in...' : 'Login'}
+          </Button>
+
+          {error && <p className="text-danger mt-2">{error}</p>}
+        </Form>
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;

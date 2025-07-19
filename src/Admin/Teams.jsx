@@ -23,30 +23,14 @@ function Teams() {
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
+                <td></td>
                 <td>Chennai Super Kings</td>
                 <td>Mahindra Singh Dhoni</td>
                 <td>csk@ipl.com</td>
                 <td>cskipl</td>
                 <td><i className="fa-solid fa-square-arrow-up-right fa-xl"></i></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Rajasthan Royals</td>
-                <td>Sanju Samson</td>
-                <td>rr@ipl.com</td>
-                <td>rripl</td>
-                <td><i className="fa-solid fa-square-arrow-up-right fa-xl"></i></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Royal Challengers Bengaluru</td>
-                <td>Rajat Patidar</td>
-                <td>rcb@ipl.com</td>
-                <td>rcbipl</td>
-                <td><i className="fa-solid fa-square-arrow-up-right fa-xl"></i></td>
-              </tr>
-            </tbody>
+             </tbody>
           </Table>
         </div>
       </div>
