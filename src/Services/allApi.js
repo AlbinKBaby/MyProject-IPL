@@ -16,3 +16,8 @@ export const registerAsso = async (userData) =>{
 export const registerAdmin = async (userData) =>{
     return await commonApi("POST",`${base_url}/user/register/admin`,userData,"")
 }
+
+// reg player
+export const registerPlayer = async(userData) =>{
+    return await commonApi("POST",`${base_url}/addplayer`,userData,"")
+}
